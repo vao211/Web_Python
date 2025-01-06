@@ -6,8 +6,13 @@ B2: đăng ký blue_print
 def create_app():
     app = Flask(__name__)
     
-    from .routes import home, page_1
+    from .routes import home ,login
     app.register_blueprint(home)
-    app.register_blueprint(page_1)
+    app.register_blueprint(login)
     
     return app
+
+'''
+    from .routes import home
+    app.register_blueprint(home)
+'''
