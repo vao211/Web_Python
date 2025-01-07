@@ -4,32 +4,29 @@ route cho các blue print
 
 B1: tạo route 
 '''
-home = Blueprint('home', __name__)
-login = Blueprint("log", __name__)
+home_bp = Blueprint('home', __name__)
+login_bp = Blueprint("login", __name__)
 
-@home.route('/')  #đối_tượng.route()    home = Blueprint('home', __name__)
+@home_bp.route('/')  #đối_tượng.route()    home = Blueprint('home', __name__)
 def index():
     return render_template('index.html')
 
-@login.route('/login')
+@login_bp.route('/login')
 def login_page():
     return render_template('login.html')
 
-@login.route('/login', methods=['POST'])
+@login_bp.route('/login', methods=['POST'])
 def do_login():
     username = request.form['username']
     password = request.form['password']
-    
-    if username == '1' and password == '1':  
-        return redirect(url_for('home.open_welcome', username=username))   #tên_đối_tượng_blue_print.tên_function  home = Blueprint('home', __name__)
+    u = {"vinh": 1, "hung": 2}
+    if username == 'vinh' and password == '1' or username == 'hung' and password == '1':
+        return redirect(url_for('user.profile', user_id=u.get(username)))#tên_đối_tượng_blue_print.tên_function  home = Blueprint('home', __name__)
     else:
         flash('Login failed. Please check your credentials.', 'danger')
         return redirect(url_for('login.login_page'))
 
-@home.route('/welcome/<username>')   
-def open_welcome(username):
-    return render_template('welcome.html', username= username)
-    
+
 
 '''
 @home.route('/login', methods=['POST'])
@@ -46,5 +43,4 @@ def do_login():
 @home.route('/login')
 def login_page():
     return render_template('login.html')
-
 '''
