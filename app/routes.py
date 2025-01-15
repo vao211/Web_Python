@@ -17,11 +17,20 @@ def login_page():
 
 @login_bp.route('/login', methods=['POST'])
 def do_login():
-    username = request.form['username']
+    username = request.form['username']  
     password = request.form['password']
-    u = {"vinh": 1, "hung": 2}
+    
+    """
+        <h1>Login Page</h1>
+        <form action="/login" method="post">
+            <input type="text" name="username" placeholder="Username" required>  ---> username sẽ lấy từ form này
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    """
+    testuser = {"vinh": 1, "hung": 2}
     if username == 'vinh' and password == '1' or username == 'hung' and password == '1':
-        return redirect(url_for('user.profile', user_id=u.get(username)))#tên_đối_tượng_blue_print.tên_function  home = Blueprint('home', __name__)
+        return redirect(url_for('user.profile', user_id=testuser.get(username)))#tên_đối_tượng_blue_print.tên_function  home = Blueprint('home', __name__)
     else:
         flash('Login failed. Please check your credentials.', 'danger')
         return redirect(url_for('login.login_page'))

@@ -13,7 +13,7 @@ B2: đăng ký blue_print
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    
+
     from .routes import home_bp ,login_bp
     from .user import user_bp
     
@@ -21,7 +21,7 @@ def create_app():
                                                         #(@user_bp.route('/profile/<int:user_id>')): /user/profile/<int:user_id>
     app.register_blueprint(home_bp)
     app.register_blueprint(login_bp)
-    
+            
     return app
 
 '''
